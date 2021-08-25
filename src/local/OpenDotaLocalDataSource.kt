@@ -17,7 +17,7 @@ class OpenDotaLocalDataSource : LocalDataSource {
         HeroStatsLocal.heroStats = heroStatsList
     }
 
-    override fun size(): Boolean {
+    override fun isEmpty(): Boolean {
         return HeroStatsLocal.heroStats.isEmpty()
     }
 }
@@ -26,5 +26,5 @@ class OpenDotaLocalDataSource : LocalDataSource {
 interface LocalDataSource {
     suspend fun getHeroStats(firstIndex : Int, lastIndex : Int) : List<HeroStats>
     suspend fun saveHeroStats(heroStatsList : List<HeroStatsLocal>)
-    fun size() : Boolean
+    fun isEmpty() : Boolean
 }

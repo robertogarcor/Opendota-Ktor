@@ -15,7 +15,7 @@ class HeroStatsRepositoryImpl(private val client : HttpClient,
     override suspend fun getHeroStats(page : Int): List<HeroStats> {
         val firstIndex = (page - 1) * MAX_ITEMS
         val lastIndex = page * MAX_ITEMS - 1
-        if (localDataSource.size()) {
+        if (localDataSource.isEmpty()) {
             val heroStatsRemote = remoteDataSource.getHeroStats((client))
             localDataSource.saveHeroStats(heroStatsRemote)
         }
