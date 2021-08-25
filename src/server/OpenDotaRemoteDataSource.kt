@@ -6,9 +6,7 @@ import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 
-class OpenDotaRemoteDataSource() : RemoteDataSource {
-
-    private val entityMapper = EntityMapperImpl()
+class OpenDotaRemoteDataSource(private val entityMapper : EntityMapperImpl) : RemoteDataSource {
 
     companion object {
         val URL_BASE : String = "https://api.opendota.com/api/heroStats"

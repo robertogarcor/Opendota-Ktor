@@ -3,9 +3,7 @@ package com.example.rgc.opendotaktor.local
 import com.example.rgc.opendotaktor.domain.HeroStats
 import com.example.rgc.opendotaktor.utils.EntityMapperImpl
 
-class OpenDotaLocalDataSource : LocalDataSource {
-
-    private val entityMapper = EntityMapperImpl()
+class OpenDotaLocalDataSource(private val entityMapper : EntityMapperImpl) : LocalDataSource {
 
     override suspend fun getHeroStats(firstIndex : Int, lastIndex : Int): List<HeroStats> {
         return HeroStatsLocal.heroStats.filterIndexed { index, heroStatsLocal ->

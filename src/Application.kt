@@ -5,8 +5,8 @@ import com.example.rgc.opendotaktor.domain.HeroStatsRepositoryImpl
 import com.example.rgc.opendotaktor.domain.getHeroes
 import com.example.rgc.opendotaktor.local.OpenDotaLocalDataSource
 import com.example.rgc.opendotaktor.server.OpenDotaRemoteDataSource
+import com.example.rgc.opendotaktor.utils.EntityMapperImpl
 import io.ktor.application.*
-import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.gson.*
 import io.ktor.features.*
@@ -14,7 +14,6 @@ import io.ktor.client.*
 import io.ktor.client.engine.apache.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.logging.*
-import kotlinx.coroutines.*
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -37,8 +36,8 @@ fun Application.hero(testing: Boolean = false) {
     }
 
     val repository: HeroStatsRepository = HeroStatsRepositoryImpl(client,
-                                            OpenDotaRemoteDataSource(),
-                                            OpenDotaLocalDataSource())
+                                            OpenDotaRemoteDataSource(EntityMapperImpl()),
+                                            OpenDotaLocalDataSource(EntityMapperImpl()))
     routing {
         this.getHeroes(repository)
     }
