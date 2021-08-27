@@ -1,6 +1,6 @@
-package com.example.rgc.opendotaktor.server
+package com.example.rgc.opendotaktor.heroes.server
 
-import com.example.rgc.opendotaktor.local.HeroStatsLocal
+import com.example.rgc.opendotaktor.heroes.local.HeroStatsLocal
 import com.example.rgc.opendotaktor.utils.EntityMapperImpl
 import io.ktor.client.*
 import io.ktor.client.request.*

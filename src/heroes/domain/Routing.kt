@@ -1,4 +1,4 @@
-package com.example.rgc.opendotaktor.domain
+package com.example.rgc.opendotaktor.heroes.domain
 
 import io.ktor.application.*
 import io.ktor.response.*

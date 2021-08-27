@@ -1,8 +1,8 @@
 package com.example.rgc.opendotaktor.utils
 
-import com.example.rgc.opendotaktor.domain.HeroStats
-import com.example.rgc.opendotaktor.local.HeroStatsLocal
-import com.example.rgc.opendotaktor.server.HeroStatsServer as HeroStatsServer
+import com.example.rgc.opendotaktor.heroes.domain.HeroStats
+import com.example.rgc.opendotaktor.heroes.local.HeroStatsLocal
+import com.example.rgc.opendotaktor.heroes.server.HeroStatsServer as HeroStatsServer
 
 class EntityMapperImpl : EntityMapper<HeroStatsServer, HeroStats, HeroStatsLocal> {
 

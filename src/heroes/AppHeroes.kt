@@ -1,10 +1,10 @@
 package com.example.rgc.opendotaktor.heroes
 
-import com.example.rgc.opendotaktor.domain.HeroStatsRepository
-import com.example.rgc.opendotaktor.domain.HeroStatsRepositoryImpl
-import com.example.rgc.opendotaktor.domain.getHeroes
-import com.example.rgc.opendotaktor.local.OpenDotaLocalDataSource
-import com.example.rgc.opendotaktor.server.OpenDotaRemoteDataSource
+import com.example.rgc.opendotaktor.heroes.domain.HeroStatsRepository
+import com.example.rgc.opendotaktor.heroes.domain.HeroStatsRepositoryImpl
+import com.example.rgc.opendotaktor.heroes.domain.getHeroes
+import com.example.rgc.opendotaktor.heroes.local.OpenDotaLocalDataSource
+import com.example.rgc.opendotaktor.heroes.server.OpenDotaRemoteDataSource
 import com.example.rgc.opendotaktor.utils.EntityMapperImpl
 import io.ktor.application.*
 import io.ktor.client.*

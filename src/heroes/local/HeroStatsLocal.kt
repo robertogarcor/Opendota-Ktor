@@ -1,4 +1,4 @@
-package com.example.rgc.opendotaktor.local
+package com.example.rgc.opendotaktor.heroes.local
 
 data class HeroStatsLocal(
     val id: Int,

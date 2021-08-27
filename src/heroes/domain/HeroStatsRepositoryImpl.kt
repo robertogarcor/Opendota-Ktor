@@ -1,7 +1,7 @@
-package com.example.rgc.opendotaktor.domain
+package com.example.rgc.opendotaktor.heroes.domain
 
-import com.example.rgc.opendotaktor.local.LocalDataSource
-import com.example.rgc.opendotaktor.server.RemoteDataSource
+import com.example.rgc.opendotaktor.heroes.local.LocalDataSource
+import com.example.rgc.opendotaktor.heroes.server.RemoteDataSource
 import io.ktor.client.*
 
 class HeroStatsRepositoryImpl(private val client : HttpClient,

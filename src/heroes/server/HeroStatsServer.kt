@@ -1,4 +1,4 @@
-package com.example.rgc.opendotaktor.server
+package com.example.rgc.opendotaktor.heroes.server
 
 data class HeroStatsServer(
     val id: Int,

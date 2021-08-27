@@ -1,6 +1,6 @@
-package com.example.rgc.opendotaktor.local
+package com.example.rgc.opendotaktor.heroes.local
 
-import com.example.rgc.opendotaktor.domain.HeroStats
+import com.example.rgc.opendotaktor.heroes.domain.HeroStats
 import com.example.rgc.opendotaktor.utils.EntityMapperImpl
 
 class OpenDotaLocalDataSource(private val entityMapper : EntityMapperImpl) : LocalDataSource {
