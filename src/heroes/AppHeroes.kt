@@ -11,17 +11,11 @@ import io.ktor.client.*
 import io.ktor.client.engine.apache.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.logging.*
-import io.ktor.features.*
-import io.ktor.gson.*
 import io.ktor.routing.*
 
 @Suppress("unused") // Referenced in application.conf
 @kotlin.jvm.JvmOverloads
 fun Application.hero(testing: Boolean = false) {
-    install(ContentNegotiation) {
-        gson {
-        }
-    }
 
     val client = HttpClient(Apache) {
         install(JsonFeature) {
