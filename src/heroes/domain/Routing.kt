@@ -11,3 +11,6 @@ fun Routing.getHeroes(repository : HeroStatsRepository) {
         call.respond(repository.getHeroStats(Integer.parseInt(page)))
     }
 }
+
+
+
