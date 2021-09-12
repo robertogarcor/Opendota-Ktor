@@ -1,12 +1,11 @@
 package com.example.rgc.opendotaktor
 
-import com.example.rgc.opendotaktor.heroes.local.HeroStats
+import com.example.rgc.opendotaktor.heroes.local.Herostats
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import io.ktor.application.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.flywaydb.core.Flyway
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -23,9 +22,13 @@ fun Application.databaseFactoryInit() {
     createTables()
     }
 
-    private fun createTables() {
-        transaction {
-            SchemaUtils.create(HeroStats)
+private fun createTables() {
+    transaction {
+        SchemaUtils.create(Herostats)
     }
-
 }
+
+suspend fun <T> dbQuery(block: () -> T) : T =
+    withContext(Dispatchers.IO) {
+        transaction { block() }
+    }
