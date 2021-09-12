@@ -13,13 +13,13 @@ class HeroStatsRepositoryImpl(private val client : HttpClient,
     }
 
     override suspend fun getHeroStats(page : Int): List<HeroStats> {
-        val firstIndex = (page - 1) * MAX_ITEMS
-        val lastIndex = page * MAX_ITEMS - 1
+        val firstIndex : Long = ((page - 1) * MAX_ITEMS).toLong()
+        val maxItems = MAX_ITEMS
         if (localDataSource.isEmpty()) {
             val heroStatsRemote = remoteDataSource.getHeroStats((client))
             localDataSource.saveHeroStats(heroStatsRemote)
         }
-        return localDataSource.getHeroStats(firstIndex, lastIndex)
+        return localDataSource.getHeroStats(maxItems, firstIndex)
     }
 }
 

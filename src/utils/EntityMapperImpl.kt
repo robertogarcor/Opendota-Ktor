@@ -2,6 +2,8 @@ package com.example.rgc.opendotaktor.utils
 
 import com.example.rgc.opendotaktor.heroes.domain.HeroStats
 import com.example.rgc.opendotaktor.heroes.local.HeroStatsLocal
+import com.example.rgc.opendotaktor.heroes.local.Herostats
+import org.jetbrains.exposed.sql.ResultRow
 import com.example.rgc.opendotaktor.heroes.server.HeroStatsServer as HeroStatsServer
 
 class EntityMapperImpl : EntityMapper<HeroStatsServer, HeroStats, HeroStatsLocal> {
@@ -25,6 +27,17 @@ class EntityMapperImpl : EntityMapper<HeroStatsServer, HeroStats, HeroStatsLocal
             primaryAttr =  localModel.primaryAttr,
             attackType = localModel.attackType,
             img  = localModel.image
+        )
+    }
+
+    override fun mapToLocalModel(dbModel: ResultRow): HeroStatsLocal {
+        return HeroStatsLocal(
+            id = dbModel[Herostats.id],
+            name = dbModel[Herostats.name],
+            localizedName = dbModel[Herostats.localizedName],
+            primaryAttr =  dbModel[Herostats.primaryAttr],
+            attackType = dbModel[Herostats.attackType],
+            image  = dbModel[Herostats.image]
         )
     }
 
