@@ -4,8 +4,6 @@ import com.example.rgc.opendotaktor.heroes.dikoin.heroesModule
 import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.gson.*
-import org.flywaydb.core.Flyway
-import org.flywaydb.core.internal.database.DatabaseFactory
 import org.koin.ktor.ext.Koin
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
