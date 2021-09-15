@@ -18,7 +18,7 @@ data class HeroStatsLocal(
 
 }
 
-object Herostats : Table() {
+object Herostats : Table("herostats") {
     val id: Column<Int> = integer("id").autoIncrement()
     val name: Column<String> = varchar("name", 100)
     val localizedName: Column<String> = varchar("localizedName", 100)
