@@ -11,6 +11,7 @@ import org.jetbrains.exposed.exceptions.ExposedSQLException
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
+import java.lang.IllegalArgumentException
 
 const val HIKARI_CONFIG_KEY = "ktor.db.hikariConfig"
 
