@@ -19,11 +19,11 @@ data class HeroStatsLocal(
 }
 
 object Herostats : Table("herostats") {
-    val id: Column<Int> = integer("id").autoIncrement()
+    val heroId: Column<Int> = integer("id").autoIncrement()
     val name: Column<String> = varchar("name", 100)
     val localizedName: Column<String> = varchar("localizedName", 100)
     val primaryAttr: Column<String> = varchar("primaryAttr", 100)
     val attackType: Column<String> = varchar("attackType", 100)
     val image: Column<String> = varchar("image", 250)
-    override val primaryKey = PrimaryKey(id, name = "id")
+    override val primaryKey = PrimaryKey(heroId, name = "pk_hero")
 }

@@ -32,7 +32,7 @@ class EntityMapperImpl : EntityMapper<HeroStatsServer, HeroStats, HeroStatsLocal
 
     override fun mapToLocalModel(dbModel: ResultRow): HeroStatsLocal {
         return HeroStatsLocal(
-            id = dbModel[Herostats.id],
+            id = dbModel[Herostats.heroId],
             name = dbModel[Herostats.name],
             localizedName = dbModel[Herostats.localizedName],
             primaryAttr =  dbModel[Herostats.primaryAttr],
