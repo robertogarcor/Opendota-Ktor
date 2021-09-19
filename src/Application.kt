@@ -1,5 +1,6 @@
 package com.example.rgc.opendotaktor
 
+import com.example.rgc.opendotaktor.auth.dikoin.authModule
 import com.example.rgc.opendotaktor.heroes.dikoin.heroesModule
 import io.ktor.application.*
 import io.ktor.features.*
@@ -15,9 +16,9 @@ fun Application.main(testing: Boolean = false) {
     install(ContentNegotiation) {
         gson {  }
     }
-    // Declare install Koin
+    // Declare install Koin modules
     install(Koin) {
-        modules(heroesModule)
+        modules(heroesModule, authModule)
     }
 
     databaseFactoryInit()

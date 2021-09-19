@@ -5,15 +5,10 @@
 
 package auth.domain
 
-import com.example.rgc.opendotaktor.users.domain.UserRepositoryImpl
-import com.example.rgc.opendotaktor.users.local.LocalDataSource
+import com.example.rgc.opendotaktor.users.domain.UserRepository
 import com.example.rgc.opendotaktor.users.local.UserLocal
-import com.example.rgc.opendotaktor.users.local.UserLocalDataSource
 
-class AuthUserRepositoryImpl() : AuthUserRepository {
-
-    private val localDataSource : LocalDataSource = UserLocalDataSource()
-    private val userRepository = UserRepositoryImpl(localDataSource)
+class AuthUserRepositoryImpl(private val userRepository : UserRepository) : AuthUserRepository {
 
     override suspend fun save(user: UserLocal) {
         userRepository.save(user)

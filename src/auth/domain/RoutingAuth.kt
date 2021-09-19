@@ -13,7 +13,7 @@ import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
 
-fun Routing.authUser(authUserRepositoryImpl: AuthUserRepository) {
+fun Routing.authUsers(authUserRepositoryImpl: AuthUserRepository) {
     route ("/register") {
         post() {
             try {
