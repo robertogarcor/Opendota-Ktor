@@ -1,17 +1,19 @@
 package com.example.rgc.opendotaktor
 
 import com.example.rgc.opendotaktor.heroes.local.Herostats
+import com.example.rgc.opendotaktor.users.local.Users
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import io.ktor.application.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.jetbrains.exposed.exceptions.ExposedSQLException
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
+import java.lang.IllegalArgumentException
 
 const val HIKARI_CONFIG_KEY = "ktor.db.hikariConfig"
-
 
 fun Application.databaseFactoryInit() {
 
@@ -24,11 +26,19 @@ fun Application.databaseFactoryInit() {
 
 private fun createTables() {
     transaction {
-        SchemaUtils.create(Herostats)
+        SchemaUtils.create(Herostats, Users)
     }
 }
 
-suspend fun <T> dbQuery(block: () -> T) : T =
+suspend fun <T> dbQuery(block: () -> T) : T  =
     withContext(Dispatchers.IO) {
-        transaction { block() }
+        transaction {
+            try {
+                block()
+                commit()
+            } catch (e : ExposedSQLException) {
+                rollback()
+                throw Exception()
+             }
+        } as T
     }
