@@ -2,7 +2,7 @@ package com.example.rgc.opendotaktor.heroes.local
 
 import com.example.rgc.opendotaktor.dbQuery
 import com.example.rgc.opendotaktor.heroes.domain.HeroStats
-import com.example.rgc.opendotaktor.utils.EntityMapperImpl
+import com.example.rgc.opendotaktor.heroes.mapping.EntityMapperImpl
 import org.jetbrains.exposed.sql.*
 
 class OpenDotaLocalDataSource(private val entityMapper : EntityMapperImpl) : LocalDataSource {

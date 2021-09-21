@@ -1,4 +1,9 @@
-package com.example.rgc.opendotaktor.utils
+/*
+ * Copyright (c) 2021/9/21
+ * Author : Roberto Garcia
+ */
+
+package com.example.rgc.opendotaktor.heroes.mapping
 
 import com.example.rgc.opendotaktor.heroes.domain.HeroStats
 import com.example.rgc.opendotaktor.heroes.local.HeroStatsLocal

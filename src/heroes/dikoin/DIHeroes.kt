@@ -6,7 +6,7 @@ import com.example.rgc.opendotaktor.heroes.local.LocalDataSource
 import com.example.rgc.opendotaktor.heroes.local.OpenDotaLocalDataSource
 import com.example.rgc.opendotaktor.heroes.server.OpenDotaRemoteDataSource
 import com.example.rgc.opendotaktor.heroes.server.RemoteDataSource
-import com.example.rgc.opendotaktor.utils.EntityMapperImpl
+import com.example.rgc.opendotaktor.heroes.mapping.EntityMapperImpl
 import io.ktor.client.*
 import org.koin.dsl.module
 

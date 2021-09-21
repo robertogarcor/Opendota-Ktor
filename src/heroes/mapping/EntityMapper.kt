@@ -1,4 +1,4 @@
-package com.example.rgc.opendotaktor.utils
+package com.example.rgc.opendotaktor.heroes.mapping
 
 import org.jetbrains.exposed.sql.ResultRow
 

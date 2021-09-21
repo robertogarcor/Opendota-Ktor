@@ -1,7 +1,7 @@
 package com.example.rgc.opendotaktor.heroes
 
 import com.example.rgc.opendotaktor.heroes.domain.HeroStatsRepository
-import com.example.rgc.opendotaktor.heroes.domain.getHeroes
+import com.example.rgc.opendotaktor.heroes.domain.heroes
 import io.ktor.application.*
 import io.ktor.client.*
 import io.ktor.client.engine.apache.*
@@ -28,6 +28,6 @@ fun Application.hero(testing: Boolean = false) {
     val repository : HeroStatsRepository by inject{ parametersOf(client)}
 
     routing {
-        this.getHeroes(repository)
+        this.heroes(repository)
     }
 }
