@@ -31,13 +31,5 @@ private fun createTables() {
 
 suspend fun <T> dbQuery(block: () -> T) : T  =
     withContext(Dispatchers.IO) {
-        transaction {
-            try {
-                block()
-                commit()
-            } catch (e : ExposedSQLException) {
-                rollback()
-                throw Exception()
-             }
-        } as T
+        transaction { block() }
     }
