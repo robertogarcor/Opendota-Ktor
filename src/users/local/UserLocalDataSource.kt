@@ -10,6 +10,7 @@ import com.example.rgc.opendotaktor.users.domain.User
 import com.example.rgc.opendotaktor.users.domain.mapperToUserDomain
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
+import org.jetbrains.exposed.sql.selectAll
 
 class UserLocalDataSource : LocalDataSource {
 
@@ -31,10 +32,18 @@ class UserLocalDataSource : LocalDataSource {
         }.map { mapperToUserLocal(it) }
             .map { mapperToUserDomain(it) }.singleOrNull()
     }
+
+    override suspend fun getAllUsers(): List<User>? = dbQuery {
+        Users.selectAll().toList().map {
+            mapperToUserLocal(it)
+        }.map { mapperToUserDomain(it) }.toList()
+    }
+
 }
 
 
 interface LocalDataSource {
     suspend fun save(user : UserLocal)
     suspend fun getByUsername(username : String) : User?
+    suspend fun getAllUsers() : List<User>?
 }

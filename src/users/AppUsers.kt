@@ -5,21 +5,21 @@
 
 package com.example.rgc.opendotaktor.users
 
+import com.example.rgc.opendotaktor.users.domain.UserRepository
+import com.example.rgc.opendotaktor.users.domain.UserRepositoryImpl
+import com.example.rgc.opendotaktor.users.domain.users
+import com.example.rgc.opendotaktor.users.local.UserLocalDataSource
 import io.ktor.application.*
-import io.ktor.auth.*
-import io.ktor.response.*
 import io.ktor.routing.*
 
 @Suppress("unused")
 @kotlin.jvm.JvmOverloads
 fun Application.user(testing: Boolean = false) {
 
+    val repository : UserRepository = UserRepositoryImpl(UserLocalDataSource())
+
     routing {
-        authenticate("auth-jwt") {
-            get("/users") {
-                call.respondText { "Users Module OK!" }
-            }
-        }
+        this.users(repository)
     }
 
 }

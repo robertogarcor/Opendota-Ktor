@@ -17,9 +17,14 @@ class UserRepositoryImpl(private val localDataSource: LocalDataSource) : UserRep
     override suspend fun getByUsername(username: String) : User? {
         return localDataSource.getByUsername(username)
     }
+
+    override suspend fun getAllUsers(): List<User>? {
+        return localDataSource.getAllUsers()
+    }
 }
 
 interface UserRepository {
     suspend fun save(user : UserLocal)
     suspend fun getByUsername(username : String) : User?
+    suspend fun getAllUsers() : List<User>?
 }
