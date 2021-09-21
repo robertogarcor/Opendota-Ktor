@@ -6,6 +6,8 @@
 package com.example.rgc.opendotaktor.users.local
 
 import com.example.rgc.opendotaktor.dbQuery
+import com.example.rgc.opendotaktor.users.domain.User
+import com.example.rgc.opendotaktor.users.domain.mapperToUserDomain
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
 
@@ -23,15 +25,16 @@ class UserLocalDataSource : LocalDataSource {
         }
     }
 
-    override suspend fun getByUsername(username: String) : UserLocal?  = dbQuery {
+    override suspend fun getByUsername(username: String) : User? = dbQuery {
         Users.select {
             Users.username eq username
-        }.map { mapperToUserLocal(it) }.singleOrNull()
+        }.map { mapperToUserLocal(it) }
+            .map { mapperToUserDomain(it) }.singleOrNull()
     }
 }
 
 
 interface LocalDataSource {
     suspend fun save(user : UserLocal)
-    suspend fun getByUsername(username : String) : UserLocal?
+    suspend fun getByUsername(username : String) : User?
 }

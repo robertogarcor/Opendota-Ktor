@@ -14,12 +14,12 @@ class UserRepositoryImpl(private val localDataSource: LocalDataSource) : UserRep
         localDataSource.save(user)
     }
 
-    override suspend fun getByUsername(username: String) : UserLocal? {
+    override suspend fun getByUsername(username: String) : User? {
         return localDataSource.getByUsername(username)
     }
 }
 
 interface UserRepository {
     suspend fun save(user : UserLocal)
-    suspend fun getByUsername(username : String) : UserLocal?
+    suspend fun getByUsername(username : String) : User?
 }
