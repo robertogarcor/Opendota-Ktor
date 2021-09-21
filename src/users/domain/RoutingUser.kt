@@ -5,6 +5,7 @@
 
 package com.example.rgc.opendotaktor.users.domain
 
+import com.example.rgc.opendotaktor.utils.Utils
 import com.google.gson.JsonParser
 import io.ktor.application.*
 import io.ktor.auth.*
@@ -17,12 +18,10 @@ fun Routing.users(repository: UserRepository) {
         get("/users") {
             val users: List<User>? = repository.getAllUsers()
             if (users == null) {
-                call.respond(HttpStatusCode.NotFound, parseJson("{'message' : 'Users Not Found'}"))
+                call.respond(HttpStatusCode.NotFound, Utils.parseJson("{'message' : 'Users Not Found'}"))
             } else {
                 call.respond(HttpStatusCode.OK, users)
             }
         }
     }
 }
-
-private fun parseJson(string : String) = JsonParser.parseString(string)

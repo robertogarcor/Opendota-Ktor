@@ -7,6 +7,7 @@ package auth.domain
 
 import com.example.rgc.opendotaktor.auth.AuthJwt
 import com.example.rgc.opendotaktor.users.local.UserLocal
+import com.example.rgc.opendotaktor.utils.Utils
 import com.google.gson.JsonParser
 import io.ktor.application.*
 import io.ktor.http.*
@@ -19,16 +20,16 @@ fun Routing.authUsers(authUserRepositoryImpl: AuthUserRepository, autjwt : AuthJ
         try {
             val user = call.receive<UserLocal>()
             authUserRepositoryImpl.save(user)
-            call.respond(HttpStatusCode.Created, parseJson("{'message' : 'User Created Ok!'}"))
+            call.respond(HttpStatusCode.Created, Utils.parseJson("{'message' : 'User Created Ok!'}"))
         } catch (e : Exception) {
-            call.respond(HttpStatusCode.InternalServerError, parseJson("{'message' : 'Error data register (username or email are exists)'}"))
+            call.respond(HttpStatusCode.InternalServerError, Utils.parseJson("{'message' : 'Error data register (username or email are exists)'}"))
         }
     }
     post("/login") {
         val login = call.receive<UserLocal>()
         val user = authUserRepositoryImpl.getByUsername(login.username)
         if(user === null || login.password != user.password) {
-            call.respond(HttpStatusCode.Unauthorized, parseJson("{'message' : 'Invalid credentials User'}"))
+            call.respond(HttpStatusCode.Unauthorized, Utils.parseJson("{'message' : 'Invalid credentials User'}"))
         } else {
             val userToken = user.copy(token = autjwt.token(user.username))
             call.respond(HttpStatusCode.OK, userToken)
@@ -37,5 +38,4 @@ fun Routing.authUsers(authUserRepositoryImpl: AuthUserRepository, autjwt : AuthJ
     }
 }
 
-private fun parseJson(string : String) = JsonParser.parseString(string)
 
