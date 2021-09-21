@@ -14,11 +14,13 @@ import io.ktor.http.*
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
+import org.mindrot.jbcrypt.BCrypt
 
 fun Routing.authUsers(authUserRepositoryImpl: AuthUserRepository, autjwt : AuthJwt) {
     post("/register") {
         try {
             val user = call.receive<UserLocal>()
+            user.password = BCrypt.hashpw(user.password, BCrypt.gensalt())
             authUserRepositoryImpl.save(user)
             call.respond(HttpStatusCode.Created, Utils.parseJson("{'message' : 'User Created Ok!'}"))
         } catch (e : Exception) {
@@ -28,12 +30,11 @@ fun Routing.authUsers(authUserRepositoryImpl: AuthUserRepository, autjwt : AuthJ
     post("/login") {
         val login = call.receive<UserLocal>()
         val user = authUserRepositoryImpl.getByUsername(login.username)
-        if(user === null || login.password != user.password) {
+        if(user === null || !BCrypt.checkpw(login.password, user.password)) {
             call.respond(HttpStatusCode.Unauthorized, Utils.parseJson("{'message' : 'Invalid credentials User'}"))
         } else {
             val userToken = user.copy(token = autjwt.token(user.username))
             call.respond(HttpStatusCode.OK, userToken)
-            //call.respond(HttpStatusCode.OK, mapOf("token" to autjwt.token(user.username)))
         }
     }
 }

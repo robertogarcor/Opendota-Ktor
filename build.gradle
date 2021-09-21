@@ -60,6 +60,9 @@ dependencies {
     // Ktor - JWT
     implementation("io.ktor:ktor-auth:$ktor_version")
     implementation("io.ktor:ktor-auth-jwt:$ktor_version")
+    // jbcrypt
+    implementation("org.mindrot:jbcrypt:0.4")
+
 
 }
 

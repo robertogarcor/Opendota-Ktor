@@ -10,7 +10,7 @@ import org.jetbrains.exposed.sql.Table
 
 data class UserLocal(val id : Int,
                      val username : String,
-                     val password : String,
+                     var password : String,
                      val firstname : String,
                      val email : String,
                      val description : String)
