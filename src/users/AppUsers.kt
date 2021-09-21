@@ -6,17 +6,16 @@
 package com.example.rgc.opendotaktor.users
 
 import com.example.rgc.opendotaktor.users.domain.UserRepository
-import com.example.rgc.opendotaktor.users.domain.UserRepositoryImpl
 import com.example.rgc.opendotaktor.users.domain.users
-import com.example.rgc.opendotaktor.users.local.UserLocalDataSource
 import io.ktor.application.*
 import io.ktor.routing.*
+import org.koin.ktor.ext.inject
 
 @Suppress("unused")
 @kotlin.jvm.JvmOverloads
 fun Application.user(testing: Boolean = false) {
 
-    val repository : UserRepository = UserRepositoryImpl(UserLocalDataSource())
+    val repository : UserRepository by inject()
 
     routing {
         this.users(repository)
