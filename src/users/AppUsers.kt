@@ -6,6 +6,7 @@
 package com.example.rgc.opendotaktor.users
 
 import io.ktor.application.*
+import io.ktor.auth.*
 import io.ktor.response.*
 import io.ktor.routing.*
 
@@ -14,8 +15,10 @@ import io.ktor.routing.*
 fun Application.user(testing: Boolean = false) {
 
     routing {
-        get ("/users") {
-            call.respondText { "Users Module OK!" }
+        authenticate("auth-jwt") {
+            get("/users") {
+                call.respondText { "Users Module OK!" }
+            }
         }
     }
 
