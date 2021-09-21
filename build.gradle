@@ -57,6 +57,9 @@ dependencies {
     implementation"com.zaxxer:HikariCP:$hikari_version"
     // SqlDelight
     implementation "com.squareup.sqldelight:jdbc-driver:$sqldelight_version"
+    // Ktor - JWT
+    implementation("io.ktor:ktor-auth:$ktor_version")
+    implementation("io.ktor:ktor-auth-jwt:$ktor_version")
 
 }
 
